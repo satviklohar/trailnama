@@ -46,7 +46,7 @@ h3{font-size:1.2rem}
 .menu-btn span{width:24px;height:2px;background:var(--ink)}
 
 /* hero: golden-hour scene */
-.hero{position:relative;min-height:max(720px,100svh);display:flex;align-items:center;overflow:hidden;color:#fff;
+.hero{position:relative;min-height:max(720px,100vh);min-height:max(720px,100svh);display:flex;align-items:center;overflow:hidden;color:#fff;
   background:
     radial-gradient(55% 55% at 73% 38%,rgba(255,214,140,.8),transparent 72%),
     linear-gradient(180deg,#2b1a14 0%,#6e2c14 24%,#c2410c 48%,#f08a2c 68%,#fbbf24 100%)}
@@ -74,7 +74,7 @@ h3{font-size:1.2rem}
 .planner-title{font-weight:600;margin-bottom:.8rem}
 .planner-row{display:grid;grid-template-columns:1.3fr 1fr auto;gap:.8rem;align-items:end}
 .planner label{display:grid;gap:.3rem;font-size:.8rem;color:rgba(255,255,255,.8)}
-.planner select,.planner input{font:inherit;font-size:15px;color:#fff;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:.7rem .8rem;width:100%;color-scheme:dark}
+.planner select,.planner input{font:inherit;font-size:16px;color:#fff;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:.7rem .8rem;width:100%;color-scheme:dark}
 .planner select option{color:#1c1917;background:#fff}
 .planner .btn{white-space:nowrap}
 
@@ -163,7 +163,7 @@ details p{color:var(--muted);margin-top:.6rem}
 .note{font-size:.8rem;color:var(--muted)}
 
 /* footer + floating button */
-.footer{background:var(--deep);color:#e8d9c8;padding:1.6rem 0;font-size:.9rem}
+.footer{background:var(--deep);color:#e8d9c8;padding:1.6rem 0 7rem;font-size:.9rem}
 .foot{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 .wa-float{position:fixed;right:16px;bottom:16px;z-index:90;background:#25d366;color:#fff;font-weight:600;font-size:.9rem;text-decoration:none;padding:.65rem 1.1rem;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
 .wa-float:hover{background:#1ebe5a}
@@ -276,7 +276,6 @@ details[open] summary::after{transform:rotate(180deg)}
   .about{grid-template-columns:1fr;gap:1.5rem}
   .about-person{flex-direction:row;text-align:left}
   .about-person img{width:80px;height:80px}
-  .footer{padding-bottom:4.5rem}
   .lb-prev,.lb-next{top:auto;bottom:14px}
 }
 
@@ -294,6 +293,7 @@ details[open] summary::after{transform:rotate(180deg)}
 .nav.scrolled .menu-btn span{background:var(--ink)}
 
 @media(max-width:1000px){
+  .guide,.walked,.flag,.walker{display:none}
   .hero-inner{flex-direction:column;align-items:flex-start}
   .stats-card{align-self:stretch;min-width:0}
 }
@@ -307,3 +307,43 @@ details[open] summary::after{transform:rotate(180deg)}
   .hero-shade{background:linear-gradient(180deg,rgba(34,18,14,.55),rgba(34,18,14,.2))}
 }
 @media(prefers-reduced-motion:reduce){.underline path,.walked{stroke-dashoffset:0;animation:none}.guide,.flag,.walker{opacity:1;animation:none}}
+
+/* ---- every device ---- */
+/* notches and home bars */
+.wa-float{right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom))}
+.ig-float{right:max(16px,env(safe-area-inset-right));bottom:calc(max(16px,env(safe-area-inset-bottom)) + 52px)}
+.nav{top:max(12px,env(safe-area-inset-top))}
+
+/* big monitors: use the extra room */
+@media(min-width:1500px){
+  .wrap{width:min(1240px,100% - 96px)}
+  .nav{width:min(1280px,100% - 48px)}
+  .hero-copy{max-width:720px}
+  .hero h1{font-size:5.4rem}
+  .lead{font-size:1.2rem;max-width:560px}
+  .cards{grid-template-columns:repeat(4,1fr)}
+}
+
+/* touch screens: no hover-only tricks, bigger tap areas */
+@media(hover:none){
+  .card:hover,.btn:hover{transform:none;box-shadow:none}
+  .g-item:hover img{transform:none}
+  .links a:not(.btn){padding:.35rem 0}
+  summary{padding:.2rem 0}
+  .footer a{padding:.4rem .2rem;display:inline-block}
+}
+
+/* short landscape phones */
+@media(max-height:520px){
+  .hero{min-height:auto}
+  .hero-inner{padding:6rem 0 2rem}
+  .ig-float{display:none}
+}
+
+/* small phones */
+@media(max-width:360px){
+  .hero h1{font-size:2.3rem}
+  .cta .btn{flex:1 1 100%}
+  .stats{gap:1.2rem}
+  .wrap{width:calc(100% - 24px)}
+}
