@@ -46,7 +46,7 @@ const GALLERY = [
 // Add ONLY genuine reviews, with the traveller's permission.
 // Preview only: shows clearly labelled "Sample" cards so you can see the layout.
 // Set to false before launch. Sample cards only appear while REVIEWS is empty.
-const SHOW_SAMPLE_REVIEWS = true;
+const SHOW_SAMPLE_REVIEWS = false;
 const SAMPLE_REVIEWS = [
   { name: "Sample traveller", trip: "Sample trip", rating: 5, text: "This is where a traveller's own words about their trip will appear." },
   { name: "Sample traveller", trip: "Sample trip", rating: 5, text: "Short, honest feedback about the group, the guides and the experience." },
@@ -101,7 +101,9 @@ const REVIEWS = [
     ? REVIEWS.map(r => card(r, false)).join("")
     : SHOW_SAMPLE_REVIEWS
       ? SAMPLE_REVIEWS.map(r => card(r, true)).join("")
-      : `<div class="placeholder">Reviews from our travellers will appear here soon.</div>`;
+      : "";
+  // No reviews yet: hide the whole section instead of showing an empty one.
+  if (!rEl.innerHTML) document.getElementById("stories").hidden = true;
 
   // Gallery
   const gEl = document.getElementById("gallery-grid");
@@ -114,6 +116,14 @@ const REVIEWS = [
   } else {
     gEl.innerHTML = tints.map((t, i) => `<div class="g-item ph ${t}"><span class="ph-label">${["📸", "🏔", "⛺", "🥾", "🎥", "🌄"][i]}<small>Your trip photo here</small></span></div>`).join("");
   }
+
+  // Marquee of photos
+  const mt = document.getElementById("marquee-track");
+  const imgs = GALLERY.filter(g => g.type === "image");
+  if (imgs.length) {
+    const row = imgs.map(g => `<img src="${esc(g.src)}" alt="${esc(g.caption || "Trailnama trip photo")}" loading="lazy">`).join("");
+    mt.innerHTML = row + row;
+  } else mt.parentElement.hidden = true;
 
   // Lightbox
   const lb = document.getElementById("lightbox");

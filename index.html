@@ -70,6 +70,10 @@
     <g class="flag"><line x1="300" y1="60" x2="300" y2="20" stroke="#fff" stroke-width="3"/><path d="M300 20 L336 32 L300 44Z" fill="#fff"/></g>
     <circle r="7" fill="#fff" class="trail-dot"><animateMotion dur="7s" begin="2.4s" repeatCount="indefinite" rotate="auto"><mpath href="#trailpath"/></animateMotion></circle>
   </svg>
+  <div class="polaroids" aria-hidden="true">
+    <figure class="pol p1"><img src="assets/gallery/waterfall.jpg" alt=""><figcaption>Chasing waterfalls</figcaption></figure>
+    <figure class="pol p2"><img src="assets/gallery/milky-way.jpg" alt=""><figcaption>Under the stars</figcaption></figure>
+  </div>
   <div class="wrap hero-content">
     <p class="eyebrow anim" style="--i:0">Treks · Group trips · Mountain experiences</p>
     <h1>
@@ -98,12 +102,15 @@
   </div>
 </section>
 
+<!-- PHOTO MARQUEE -->
+<section class="marquee" aria-label="Photos from the trail"><div class="track" id="marquee-track"></div></section>
+
 <!-- TRIPS -->
 <section class="section" id="trips">
   <div class="wrap">
     <p class="eyebrow dark">Upcoming adventures</p>
     <h2>Choose your next trip</h2>
-    <p class="sub">Sample listings shown below. Final trips, prices and dates will be updated once confirmed.</p>
+    <p class="sub">Tell us your dates and group size, and we will plan the trip and share the price with you.</p>
 
     <div class="filters" role="tablist" aria-label="Filter trips">
       <button class="chip active" data-filter="all">All</button>
@@ -114,43 +121,43 @@
 
     <div class="cards" id="cards">
       <article class="card" data-type="trek">
-        <div class="thumb t1"><span class="tag">Trek</span></div>
+        <div class="thumb photo" style="--img:url(assets/gallery/valley-trail.jpg)"><span class="tag">Trek</span></div>
         <div class="body">
-          <h3>Himalayan Trek Sample</h3>
-          <p class="loc">Destination · Region</p>
-          <p>Short description of the trek, highlights and what makes it special.</p>
-          <ul class="meta"><li>5D / 4N</li><li>Moderate</li><li>From ₹ — / person</li></ul>
-          <a href="#contact" class="link" data-trip="Himalayan Trek Sample">Enquire →</a>
+          <h3>Himalayan Treks</h3>
+          <p class="loc">Himalayas</p>
+          <p>Guided treks through mountain trails, high meadows and camps, planned around your pace and experience.</p>
+          <ul class="meta"><li>Guided</li><li>Small group</li><li>Custom dates</li></ul>
+          <a href="#contact" class="link" data-trip="Himalayan Treks">Get a quote →</a>
         </div>
       </article>
       <article class="card" data-type="trip">
-        <div class="thumb t2"><span class="tag">Group trip</span></div>
+        <div class="thumb photo" style="--img:url(assets/gallery/river-bridge.jpg)"><span class="tag">Group trip</span></div>
         <div class="body">
-          <h3>Valley Group Trip Sample</h3>
-          <p class="loc">Destination · Region</p>
-          <p>Relaxed group journey with stays, sightseeing and local experiences.</p>
-          <ul class="meta"><li>6D / 5N</li><li>Easy</li><li>From ₹ — / person</li></ul>
-          <a href="#contact" class="link" data-trip="Valley Group Trip Sample">Enquire →</a>
+          <h3>Valley &amp; River Journeys</h3>
+          <p class="loc">Hills &amp; valleys</p>
+          <p>Relaxed group trips through hill towns, rivers and valleys, with comfortable stays and local experiences.</p>
+          <ul class="meta"><li>Group trip</li><li>Easy pace</li><li>Stays included</li></ul>
+          <a href="#contact" class="link" data-trip="Valley & River Journeys">Get a quote →</a>
         </div>
       </article>
       <article class="card" data-type="weekend">
-        <div class="thumb t3"><span class="tag">Weekend</span></div>
+        <div class="thumb photo" style="--img:url(assets/gallery/waterfall.jpg)"><span class="tag">Weekend</span></div>
         <div class="body">
-          <h3>Weekend Escape Sample</h3>
-          <p class="loc">Destination · Region</p>
-          <p>A quick two-day reset for a short break from the city.</p>
-          <ul class="meta"><li>2D / 1N</li><li>Easy</li><li>From ₹ — / person</li></ul>
-          <a href="#contact" class="link" data-trip="Weekend Escape Sample">Enquire →</a>
+          <h3>Weekend Getaways</h3>
+          <p class="loc">Short breaks</p>
+          <p>A quick reset from the city: fresh air, waterfalls and easy trails over a weekend.</p>
+          <ul class="meta"><li>2 days</li><li>Beginner friendly</li><li>Small group</li></ul>
+          <a href="#contact" class="link" data-trip="Weekend Getaways">Get a quote →</a>
         </div>
       </article>
       <article class="card" data-type="trek">
-        <div class="thumb t4"><span class="tag">Trek</span></div>
+        <div class="thumb photo" style="--img:url(assets/gallery/annapurna-south.jpg)"><span class="tag">Trek</span></div>
         <div class="body">
-          <h3>High Altitude Trek Sample</h3>
-          <p class="loc">Destination · Region</p>
-          <p>For experienced trekkers looking for a bigger challenge and bigger views.</p>
-          <ul class="meta"><li>8D / 7N</li><li>Difficult</li><li>From ₹ — / person</li></ul>
-          <a href="#contact" class="link" data-trip="High Altitude Trek Sample">Enquire →</a>
+          <h3>High Altitude Treks</h3>
+          <p class="loc">High Himalaya</p>
+          <p>For trekkers ready for snow, thin air and big views, with careful acclimatisation built into the plan.</p>
+          <ul class="meta"><li>Challenging</li><li>Experienced trekkers</li><li>Custom dates</li></ul>
+          <a href="#contact" class="link" data-trip="High Altitude Treks">Get a quote →</a>
         </div>
       </article>
     </div>
@@ -162,6 +169,11 @@
   <div class="wrap">
     <p class="eyebrow dark">Why Trailnama</p>
     <h2>Travel that feels like an adventure, not a package</h2>
+    <div class="why-photos">
+      <img src="assets/gallery/jaipur-lake.jpg" alt="Lake views near Jaipur" loading="lazy">
+      <img src="assets/gallery/milky-way.jpg" alt="Milky Way over the mountains" loading="lazy">
+      <img src="assets/gallery/monsoon-train.jpg" alt="Misty green hills in monsoon" loading="lazy">
+    </div>
     <div class="features">
       <div class="feature"><div class="ico">⛰</div><h3>Real experiences</h3><p>Routes and stays chosen for the experience, not just the itinerary.</p></div>
       <div class="feature"><div class="ico">🛡</div><h3>Safety first</h3><p>Trained trip leads, planned logistics and clear safety briefings.</p></div>
@@ -194,8 +206,11 @@
       <p>Trailnama Adventures is a travel brand built for people who would rather be on a mountain path than in a queue. It is led by trekking creator and mountain athlete Harsh (<a href="https://www.instagram.com/harshbackpack" target="_blank" rel="noopener" style="color:#fdba74">@harshbackpack</a>).</p>
       <p>Our focus is simple: well-planned trips, honest pricing and memorable days outdoors.</p>
     </div>
-    <div class="about-card">
-      <img src="assets/logo.jpeg" alt="Trailnama Adventures emblem">
+    <div class="about-photos" aria-hidden="true">
+      <img class="c1" src="assets/gallery/valley-trail.jpg" alt="" loading="lazy">
+      <img class="c2" src="assets/gallery/trail-rest.jpg" alt="" loading="lazy">
+      <img class="c3" src="assets/gallery/waterfall.jpg" alt="" loading="lazy">
+      <img class="badge-logo" src="assets/logo.jpeg" alt="">
     </div>
   </div>
 </section>
@@ -243,7 +258,7 @@
     <details><summary>Do I need prior trekking experience?</summary><p>Each trip lists a difficulty level. We have options for beginners as well as experienced trekkers.</p></details>
     <details><summary>What is included in the price?</summary><p>Inclusions and exclusions are listed for every trip and confirmed before you pay.</p></details>
     <details><summary>Can you arrange a custom trip for my group?</summary><p>Yes. Tell us your dates, group size and preferences and we'll plan it with you.</p></details>
-    <details><summary>What is the cancellation policy?</summary><p>[Policy to be added.]</p></details>
+    <details><summary>What is the cancellation policy?</summary><p>Cancellation terms are shared with you in writing before you pay. Message us on WhatsApp if you would like to know them first.</p></details>
   </div>
 </section>
 
@@ -259,6 +274,7 @@
         <li><strong>WhatsApp</strong><a href="https://wa.me/918003742763" id="wa-link" target="_blank" rel="noopener">+91 80037 42763</a></li>
         <li><strong>Instagram</strong><a href="https://www.instagram.com/trailnama_adventures" id="ig-link" target="_blank" rel="noopener">@trailnama_adventures</a></li>
       </ul>
+      <img class="contact-photo" src="assets/gallery/trail-rest.jpg" alt="A rest on the mountain trail" loading="lazy">
     </div>
     <form id="enquiry" class="form" novalidate>
       <label>Name<input name="name" required autocomplete="name"></label>
