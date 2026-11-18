@@ -22,13 +22,13 @@
 <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <script>
-/* opening screen: shown while the page loads, at least ~1.4s, never more than ~3.5s */
+/* opening screen: once per visit, ~1.2s, never more than 2.5s */
 (function () {
-  var d = document.documentElement, t0 = Date.now(), ended = false;
+  var d = document.documentElement, KEY = "tn-intro", seen = false;
+  try { seen = sessionStorage.getItem(KEY); sessionStorage.setItem(KEY, "1"); } catch (e) {}
+  if (seen) return;
+  var t0 = Date.now(), ended = false;
   var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
   d.classList.add("loading");
   function done() {
@@ -36,13 +36,19 @@
     setTimeout(function () {
       d.classList.add("loaded");
       document.dispatchEvent(new Event("loader:leaving"));
-      setTimeout(function () { d.classList.remove("loading", "loaded"); }, 800);
-    }, Math.max(0, (reduce ? 300 : 1400) - (Date.now() - t0)));
+      setTimeout(function () { d.classList.remove("loading", "loaded"); }, 750);
+    }, Math.max(0, (reduce ? 250 : 1200) - (Date.now() - t0)));
   }
-  window.addEventListener("load", done);
-  setTimeout(done, 3500);
+  document.addEventListener("DOMContentLoaded", done);
+  setTimeout(done, 2500);
 })();
 </script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,600&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,600&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,600&family=Inter:wght@400;500;600&display=swap"></noscript>
 <link rel="stylesheet" href="styles.css">
 
 <script type="application/ld+json">
@@ -128,7 +134,6 @@
       <g class="flag"><line x1="730" y1="190" x2="730" y2="158"/><path d="M730 158 L758 167 L730 176Z"/></g>
       <g class="walker" transform="translate(690 612)">
         <circle class="ring" r="9"/><circle class="dot" r="5"/>
-        <animateMotion begin="3s" dur="6s" fill="freeze" calcMode="linear" path="M0 0 C -130 -22, 110 -52, -30 -92 C -130 -122, 110 -172, 10 -222 C -40 -252, 90 -292, 40 -420"/>
       </g>
     </svg>
     <div class="hero-shade"></div>

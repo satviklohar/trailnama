@@ -1,12 +1,19 @@
 const WHATSAPP = "918003742763";
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-/* the hero's trail animation waits for the opening screen to leave */
-const sceneSvg = document.querySelector(".scene");
-if (document.documentElement.classList.contains("loading") && !document.documentElement.classList.contains("loaded") && sceneSvg.pauseAnimations) {
-  sceneSvg.pauseAnimations();
-  sceneSvg.setCurrentTime(0);
-  document.addEventListener("loader:leaving", () => sceneSvg.unpauseAnimations(), { once: true });
+/* the walker dot follows the drawn trail line exactly (reads the line's own animation clock) */
+const walkPath = document.querySelector(".walked");
+const walker = document.querySelector(".walker");
+if (walkPath && walker && walkPath.getAnimations) {
+  const len = walkPath.getTotalLength();
+  const place = p => { const pt = walkPath.getPointAtLength(p * len); walker.setAttribute("transform", `translate(${pt.x} ${pt.y})`); };
+  (function step() {
+    const anim = walkPath.getAnimations().find(x => x.animationName === "draw");
+    if (!anim) return place(1);
+    const t = anim.currentTime || 0;
+    place(Math.min(Math.max((t - 3000) / 6000, 0), 1));
+    if (anim.playState !== "finished") requestAnimationFrame(step);
+  })();
 }
 const waLink = text => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;
 
