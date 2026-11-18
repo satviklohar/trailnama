@@ -110,9 +110,15 @@ const hero = document.querySelector(".hero");
 const layers = [[".m1", 0.07], [".m2", 0.13], [".sun", 0.2]].map(([s, k]) => [document.querySelector(s), k]);
 const stages = [[0, "Base camp"], [0.2, "Forest trail"], [0.4, "Tree line"], [0.6, "High ridge"], [0.8, "Snow line"], [0.97, "Summit!"]];
 const SUMMIT = 5364; // just for fun, not a real peak
-let ticking = false;
+let ticking = false, lastY = scrollY, idle;
 function onScroll() {
   const y = scrollY;
+  // floating buttons: away while scrolling down, back when you pause or scroll up
+  if (y > lastY + 4) document.body.classList.add("float-hide");
+  else if (y < lastY - 4) document.body.classList.remove("float-hide");
+  clearTimeout(idle);
+  idle = setTimeout(() => document.body.classList.remove("float-hide"), 700);
+  lastY = y;
   const max = document.documentElement.scrollHeight - innerHeight;
   const p = max > 0 ? Math.min(y / max, 1) : 0;
   nav.classList.toggle("scrolled", y > 20);

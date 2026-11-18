@@ -64,10 +64,11 @@ h3{font-size:1.25rem}
 .links{display:flex;align-items:center;gap:1.7rem}
 .links a:not(.btn){color:rgba(255,255,255,.9);text-decoration:none;font-weight:500;font-size:.95rem;padding-bottom:2px;background:linear-gradient(#fff,#fff) 0 100%/0 1.5px no-repeat;transition:background-size .3s,color .2s}
 .links a:not(.btn):hover,.links a.active:not(.btn){color:#fff;background-size:100% 1.5px}
-.menu-btn{display:none;width:44px;height:44px;background:none;border:0;cursor:pointer;flex-direction:column;justify-content:center;align-items:center;gap:7px}
-.menu-btn span{width:24px;height:2px;background:#fff;border-radius:2px;transition:transform .25s,background .3s}
-.menu-btn[aria-expanded="true"] span:first-child{transform:translateY(4.5px) rotate(45deg)}
-.menu-btn[aria-expanded="true"] span:last-child{transform:translateY(-4.5px) rotate(-45deg)}
+.menu-btn{display:none;width:48px;height:48px;background:none;border:0;cursor:pointer;flex-direction:column;justify-content:center;align-items:center;gap:7px;border-radius:14px}
+.menu-btn span{width:24px;height:2px;background:#fff;border-radius:2px;transition:transform .25s,background .3s,opacity .2s}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(9px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
 .nav.scrolled{background:rgba(255,255,255,.96);border-color:var(--line);box-shadow:0 8px 26px rgba(43,26,20,.1)}
 .nav.scrolled .links a:not(.btn){color:var(--muted);background-image:linear-gradient(var(--ink),var(--ink))}
 .nav.scrolled .links a:not(.btn):hover,.nav.scrolled .links a.active:not(.btn){color:var(--ink)}
@@ -243,6 +244,7 @@ details p{color:var(--muted);padding:0 2.5rem 1.2rem 0;animation:open .35s ease}
 .socials{display:flex;gap:.6rem;margin-top:1.2rem}
 .socials a{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,.2);transition:background .2s,border-color .2s}
 .socials a:hover{background:var(--brand);border-color:var(--brand)}
+.wa-ico{width:22px!important;height:22px!important;fill:none}
 .socials svg,.ig-float svg,.wa-float svg{width:19px;height:19px;fill:none;stroke:#fff;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .fill{fill:#fff;stroke:none!important}
 .foot-bottom{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:3.5rem;padding-top:1.4rem;border-top:1px solid rgba(255,255,255,.12);font-size:.85rem;color:#cdb9a7}
@@ -429,7 +431,7 @@ html.loading,html.loading body{overflow:hidden}
   .form .btn{width:100%;justify-self:stretch}
 
   .foot-grid{grid-template-columns:1fr 1fr;gap:2rem}
-  .foot-brand,.foot-grid>div:nth-child(3){grid-column:1/-1}
+  .foot-brand,.foot-grid>div:nth-child(3),.foot-grid>div:nth-child(4){grid-column:1/-1}
   .footer{padding-bottom:1.5rem}
   .foot-bottom{margin-bottom:5rem}
 
@@ -475,4 +477,52 @@ html.loading,html.loading body{overflow:hidden}
   .nav,.dock,.ig-float,.wa-float,.progress,.scene,.band,.planner{display:none!important}
   .hero{min-height:auto;background:none;color:var(--ink)}
   .hero h1,.lead,.kicker{color:var(--ink);text-shadow:none}
+}
+
+/* ---------- phones: big, clear icons and buttons ---------- */
+@media(max-width:860px){
+  .nav-inner{height:70px;padding:0 10px 0 12px}
+  .brand img{height:52px;padding:4px;border-radius:12px}
+  .menu-btn{width:52px;height:52px;gap:7px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3)}
+  .menu-btn span{width:26px;height:2.5px}
+  .nav.scrolled .menu-btn{background:var(--alt);border-color:var(--line)}
+  .links a:not(.btn){font-size:1.15rem;padding:1rem}
+  .links .btn{font-size:1.05rem;padding:1rem}
+
+  .stats-card svg{width:24px;height:24px}
+  .pill{font-size:.85rem;padding:.4rem .85rem;top:14px;left:14px}
+  .card .link{display:flex;justify-content:center;align-items:center;gap:.4rem;width:100%;margin-top:auto;padding:.9rem 1rem;border-radius:999px;background:var(--brand);color:#fff;font-size:1.02rem;background-image:none}
+  .card .link span{transform:none}
+  .steps b{width:40px;height:40px;font-size:1rem}
+  .checks svg{width:32px;height:32px;padding:6px}
+  summary::after{width:38px;height:38px;font-size:1.35rem}
+  .about-text .link,.section-head .link{display:inline-block;padding:.5rem 0;font-size:1.05rem}
+
+  .socials{gap:.8rem}
+  .socials a{width:50px;height:50px}
+  .socials svg{width:22px;height:22px}
+  .footer ul{gap:.2rem}
+  .footer ul a{display:inline-block;padding:.45rem 0;font-size:1.02rem}
+  .foot-bottom a{padding:.5rem 0}
+
+  .founder-fab{width:60px;height:60px}
+  .altimeter{min-width:112px;padding:.45rem .85rem;border-radius:16px}
+  .altimeter small{font-size:.65rem}
+  .altimeter b{font-size:1.55rem}
+  .altimeter span{font-size:.95rem}
+  .altimeter em{font-size:.78rem}
+  .ig-float{width:56px;height:56px;bottom:calc(max(16px,env(safe-area-inset-bottom)) + 70px)}
+  .ig-float svg{width:26px;height:26px}
+  .wa-float{width:60px;height:60px}
+  .wa-float .wa-ico{width:32px!important;height:32px!important}
+  .founder-pop{width:min(300px,calc(100vw - 32px));bottom:78px;padding:1.5rem}
+  .founder-pop img{width:88px;height:88px}
+  .founder-pop .btn{padding:.95rem;font-size:1.05rem}
+  .founder-pop .link{padding:.5rem;font-size:1.02rem}
+
+  .lightbox button{width:56px;height:56px;font-size:1.8rem}
+
+  .foot-bottom{margin-bottom:9.5rem}
+  /* floating buttons step aside while you scroll down to read */
+  body.float-hide .dock,body.float-hide .ig-float,body.float-hide .wa-float{opacity:0;pointer-events:none;translate:0 24px}
 }
