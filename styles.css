@@ -306,6 +306,44 @@ body.floats .dock,body.floats .ig-float,body.floats .wa-float{opacity:1;pointer-
 .section h2::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--brand);transition:width .8s .25s var(--ease)}
 .section h2.in::after,.section .in h2::after{width:44px}
 
+/* ---------- opening screen (jeep on the road) ---------- */
+.loader{display:none}
+.loading .loader{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;color:#fff;text-align:center;
+  background:radial-gradient(60% 50% at 50% 40%,rgba(234,88,12,.35),transparent 70%),var(--deep);
+  transition:opacity .6s ease .15s,visibility .6s ease .15s}
+html.loading,html.loading body{overflow:hidden}
+.loaded .loader{opacity:0;visibility:hidden}
+/* safety net: even if scripts fail, the screen fades away on its own */
+.loading .loader{animation:loaderBail .5s 4.5s forwards}
+@keyframes loaderBail{to{opacity:0;visibility:hidden}}
+.loader-in{width:min(440px,84vw)}
+.loader-logo{width:84px;height:auto;margin:0 auto 1.6rem;border-radius:16px;background:#fff;padding:5px;animation:logoIn .7s var(--ease) both}
+.road-scene{position:relative;height:118px;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}
+.ld-hills{position:absolute;left:0;bottom:16px;width:200%;height:70px;fill:#5a2a1a;opacity:.85;animation:hills 6s linear infinite}
+.car{position:absolute;left:50%;bottom:10px;width:150px;margin-left:-62px;transition:transform .7s cubic-bezier(.5,0,.75,0)}
+.car-body{animation:bob .35s ease-in-out infinite alternate}
+.wheel>*{transform-box:fill-box;transform-origin:center}
+.wheel path{animation:spin .45s linear infinite}
+.beam{animation:flicker 1.6s ease-in-out infinite}
+.puffs circle{fill:#e8d9c8;opacity:0;animation:puff 1.2s ease-out infinite}
+.puffs circle:nth-child(2){animation-delay:.4s}.puffs circle:nth-child(3){animation-delay:.8s}
+.road{position:absolute;left:0;right:0;bottom:6px;height:6px;border-radius:3px;background:#3b2018;overflow:hidden}
+.road::after{content:"";position:absolute;inset:2px 0;background:repeating-linear-gradient(90deg,var(--amber) 0 18px,transparent 18px 38px);animation:lane .5s linear infinite}
+.loader-text{margin-top:1.3rem;font-size:.95rem;color:#e8d9c8;letter-spacing:.02em}
+.loader-bar{width:160px;height:3px;margin:.9rem auto 0;border-radius:3px;background:rgba(255,255,255,.12);overflow:hidden}
+.loader-bar i{display:block;height:100%;width:0;background:var(--amber);animation:fillbar 1.4s var(--ease) forwards}
+.loaded .car{transform:translateX(70vw)}
+@keyframes hills{to{transform:translateX(-50%)}}
+@keyframes lane{to{background-position:-38px 0}}
+@keyframes bob{to{transform:translateY(-1.5px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes flicker{50%{opacity:.6}}
+@keyframes puff{0%{opacity:.7;transform:translate(0,0) scale(.6)}100%{opacity:0;transform:translate(-16px,-8px) scale(1.8)}}
+@keyframes fillbar{to{width:100%}}
+@keyframes logoIn{from{opacity:0;transform:translateY(10px) scale(.9)}to{opacity:1;transform:none}}
+/* hold the hero's own animations until the opening screen leaves */
+.loading:not(.loaded) .hero *,.loading:not(.loaded) .hero *::after{animation-play-state:paused!important}
+
 /* ================= responsive ================= */
 @media(min-width:1500px){
   .wrap{width:min(1240px,100% - 96px)}

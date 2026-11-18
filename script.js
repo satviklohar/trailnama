@@ -1,5 +1,13 @@
 const WHATSAPP = "918003742763";
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* the hero's trail animation waits for the opening screen to leave */
+const sceneSvg = document.querySelector(".scene");
+if (document.documentElement.classList.contains("loading") && !document.documentElement.classList.contains("loaded") && sceneSvg.pauseAnimations) {
+  sceneSvg.pauseAnimations();
+  sceneSvg.setCurrentTime(0);
+  document.addEventListener("loader:leaving", () => sceneSvg.unpauseAnimations(), { once: true });
+}
 const waLink = text => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;
 
 /* ---------- mobile menu ---------- */
