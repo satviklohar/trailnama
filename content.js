@@ -1,17 +1,19 @@
 /* ============================================================
    EDIT ME: photos, videos, reviews and Instagram posts.
-   Put files in assets/gallery/ and list them below.
+   - src:   the full photo, shown when someone opens it
+   - thumb: a clean crop for the grid (optional, falls back to src)
+   Put new files in assets/gallery/ (full) and assets/photos/ (crops).
    ============================================================ */
 
 const GALLERY = [
-  { type: "image", src: "assets/gallery/waterfall.jpg", caption: "Waterfall in the mountains" },
-  { type: "image", src: "assets/gallery/valley-trail.jpg", caption: "Walking the valley trail" },
-  { type: "image", src: "assets/gallery/annapurna-south.jpg", caption: "Annapurna South, 7,219 m" },
-  { type: "image", src: "assets/gallery/milky-way.jpg", caption: "Under the Milky Way" },
-  { type: "image", src: "assets/gallery/trail-rest.jpg", caption: "A pause on the trail" },
-  { type: "image", src: "assets/gallery/river-bridge.jpg", caption: "River and bridge in the hills" },
-  { type: "image", src: "assets/gallery/jaipur-lake.jpg", caption: "Views of Jaipur" },
-  { type: "image", src: "assets/gallery/monsoon-train.jpg", caption: "Mumbai to Pune in monsoon" },
+  { type: "image", src: "assets/gallery/valley-trail.jpg", thumb: "assets/photos/valley-trail.jpg", caption: "Walking the valley trail" },
+  { type: "image", src: "assets/gallery/waterfall.jpg", thumb: "assets/photos/waterfall.jpg", caption: "Waterfall in the mountains" },
+  { type: "image", src: "assets/gallery/annapurna-south.jpg", thumb: "assets/photos/annapurna-south.jpg", caption: "Annapurna South, 7,219 m" },
+  { type: "image", src: "assets/gallery/milky-way.jpg", thumb: "assets/photos/milky-way.jpg", caption: "Under the Milky Way" },
+  { type: "image", src: "assets/gallery/river-bridge.jpg", thumb: "assets/photos/river-bridge.jpg", caption: "River and bridge in the hills" },
+  { type: "image", src: "assets/photos/trail-rest.jpg", caption: "A pause on the trail" },
+  { type: "image", src: "assets/gallery/jaipur-lake.jpg", thumb: "assets/photos/jaipur-lake.jpg", caption: "Views of Jaipur" },
+  { type: "image", src: "assets/gallery/monsoon-train.jpg", thumb: "assets/photos/monsoon-train.jpg", caption: "Mumbai to Pune in monsoon" },
   // { type: "video", src: "assets/gallery/reel-1.mp4", caption: "Trail reel", poster: "assets/gallery/reel-1.jpg" },
 ];
 
@@ -32,8 +34,8 @@ const REVIEWS = [
   // Gallery
   const gEl = document.getElementById("gallery-grid");
   gEl.innerHTML = GALLERY.map((g, i) => g.type === "video"
-    ? `<button class="g-item" data-i="${i}" aria-label="Play ${esc(g.caption || "video")}"><video src="${esc(g.src)}" ${g.poster ? `poster="${esc(g.poster)}"` : ""} muted playsinline preload="metadata"></video><span class="play">▶</span><span class="cap">${esc(g.caption || "")}</span></button>`
-    : `<button class="g-item" data-i="${i}" aria-label="View ${esc(g.caption || "photo")}"><img src="${esc(g.src)}" alt="${esc(g.caption || "Trailnama trip photo")}" loading="lazy"><span class="cap">${esc(g.caption || "")}</span></button>`
+    ? `<button class="g-item" data-i="${i}" aria-label="Play ${esc(g.caption || "video")}"><video src="${esc(g.src)}" ${g.poster ? `poster="${esc(g.poster)}"` : ""} muted playsinline preload="metadata"></video><span class="play" aria-hidden="true">▶</span><span class="cap">${esc(g.caption || "")}</span></button>`
+    : `<button class="g-item" data-i="${i}" aria-label="Open photo: ${esc(g.caption || "trip photo")}"><img src="${esc(g.thumb || g.src)}" alt="${esc(g.caption || "Trailnama trip photo")}" loading="lazy" decoding="async"><span class="cap">${esc(g.caption || "")}</span></button>`
   ).join("");
   if (!GALLERY.length) gEl.closest("section").hidden = true;
 
@@ -57,20 +59,28 @@ const REVIEWS = [
     ).join("");
   }
 
-  // Lightbox
+  // Lightbox: click, arrow keys, swipe on phones
   const lb = document.getElementById("lightbox");
   const stage = lb.querySelector(".lb-stage");
-  let cur = 0;
+  let cur = 0, opener = null;
   function show(i) {
     cur = (i + GALLERY.length) % GALLERY.length;
     const g = GALLERY[cur];
     stage.innerHTML = (g.type === "video"
       ? `<video src="${esc(g.src)}" controls autoplay playsinline></video>`
-      : `<img src="${esc(g.src)}" alt="${esc(g.caption || "")}">`) + (g.caption ? `<p>${esc(g.caption)}</p>` : "");
-    lb.hidden = false;
-    document.body.style.overflow = "hidden";
+      : `<img src="${esc(g.src)}" alt="${esc(g.caption || "")}">`)
+      + `<p>${esc(g.caption || "")}<span>${cur + 1} / ${GALLERY.length}</span></p>`;
+    if (lb.hidden) {
+      opener = document.activeElement;
+      lb.hidden = false;
+      document.body.style.overflow = "hidden";
+      lb.querySelector(".lb-close").focus();
+    }
   }
-  function close() { lb.hidden = true; stage.innerHTML = ""; document.body.style.overflow = ""; }
+  function close() {
+    lb.hidden = true; stage.innerHTML = ""; document.body.style.overflow = "";
+    if (opener) opener.focus();
+  }
   gEl.addEventListener("click", e => { const b = e.target.closest("button[data-i]"); if (b) show(+b.dataset.i); });
   lb.querySelector(".lb-close").onclick = close;
   lb.querySelector(".lb-prev").onclick = () => show(cur - 1);
@@ -81,5 +91,13 @@ const REVIEWS = [
     if (e.key === "Escape") close();
     if (e.key === "ArrowLeft") show(cur - 1);
     if (e.key === "ArrowRight") show(cur + 1);
+  });
+  let x0 = null;
+  lb.addEventListener("touchstart", e => { x0 = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener("touchend", e => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1));
+    x0 = null;
   });
 })();
