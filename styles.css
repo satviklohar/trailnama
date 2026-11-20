@@ -702,3 +702,52 @@ select::-ms-expand{display:none}
   .strip-grid{grid-template-columns:repeat(2,1fr);gap:.5rem}
   .photo-strip{padding-bottom:3rem}
 }
+
+/* ================= page themes ================= */
+.ph-tall{height:min(24vw,330px)}
+.ph-full{top:0;height:100%}
+
+/* Upcoming trips: dawn peaks, snow, tents and a pinned route */
+.page-hero.theme-trips{padding-bottom:max(8.5rem,calc(min(24vw,330px) - 1rem));
+  background:radial-gradient(45% 70% at 12% 15%,rgba(255,214,140,.45),transparent 70%),linear-gradient(180deg,#22120e 0%,#5b2410 40%,#b8471a 78%,#e07a2e 100%)}
+.theme-trips .snow{fill:#fff7ec;opacity:.9}
+.route{fill:none;stroke:#fde68a;stroke-width:2;stroke-dasharray:3 7;stroke-linecap:round;animation:routeMove 2.4s linear infinite}
+.pin circle{fill:var(--amber)}
+.pin .pin-ring{fill:none;stroke:var(--amber);stroke-width:2;transform-box:fill-box;transform-origin:center;animation:ping 2.4s var(--d,0s) ease-out infinite}
+.tents path{fill:var(--brand)}
+.tents .t2{fill:var(--amber)}
+.tents .pole{fill:none;stroke:#22120e;stroke-width:1.5}
+@keyframes routeMove{to{stroke-dashoffset:-20}}
+
+/* About us: starry night, moon and a campfire */
+.page-hero.theme-about{padding-bottom:10rem;background:linear-gradient(180deg,#0f0806 0%,#22120e 50%,#3f1d10 100%)}
+.stars circle{fill:#fff;animation:twinkle var(--t,3s) var(--d,0s) ease-in-out infinite}
+.moon{fill:#fff3d6}
+.theme-about .m1{fill:#3a1d12;opacity:1}
+.theme-about .m2{fill:#2a140c}
+.theme-about .m3{fill:#160b07}
+.fire-glow{animation:glowp 1.8s ease-in-out infinite}
+.log{stroke:#6b3420;stroke-width:5;stroke-linecap:round}
+.flame{transform-box:fill-box;transform-origin:bottom center}
+.f1{fill:var(--brand);animation:flick .5s ease-in-out infinite alternate}
+.f2{fill:var(--amber);animation:flick .38s ease-in-out infinite alternate-reverse}
+@keyframes twinkle{50%{opacity:.2}}
+@keyframes flick{to{transform:scaleY(.8) scaleX(1.1)}}
+@keyframes glowp{50%{opacity:.55}}
+
+/* Contact: winding road at dusk, a signpost and the jeep */
+.page-hero.theme-contact{padding-bottom:max(8.5rem,calc(min(24vw,330px) - 1rem));
+  background:radial-gradient(50% 70% at 85% 25%,rgba(255,190,120,.55),transparent 70%),linear-gradient(180deg,#2b1a14 0%,#7a3315 50%,#e0782b 100%)}
+.road{fill:#3b2018}
+.road-line{fill:none;stroke:var(--amber);stroke-width:2;stroke-dasharray:10 10;animation:lane2 1s linear infinite}
+.sign .post{stroke:#22120e;stroke-width:4}
+.sign .board{fill:var(--amber)}
+.sign text{font:700 9px Inter,sans-serif;fill:#22120e;letter-spacing:.06em}
+@keyframes lane2{to{stroke-dashoffset:-20}}
+
+@media(max-width:860px){
+  .ph-tall{height:120px}
+  .page-hero.theme-trips,.page-hero.theme-contact{padding-bottom:6.5rem}
+  .page-hero.theme-about{padding-bottom:7.5rem}
+}
+

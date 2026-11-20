@@ -61,6 +61,7 @@ const fromRoot = p => (/^(https?:|data:|\/)/.test(p) ? p : SITE_ROOT + p);
     feedEl.innerHTML = GALLERY.filter(g => g.type === "image").slice(0, 6)
       .map(g => tile(INSTAGRAM_PROFILE, fromRoot(g.thumb || g.src), (g.caption || "Trail photo") + " on Instagram", false)).join("");
   }
+  const igSection = feedEl && feedEl.closest("section");
   if (feedEl) {
     const posts = INSTAGRAM_POSTS.map(u => String(u).split("?")[0])
       .filter(u => /^https:\/\/www\.instagram\.com\/(p|reel|tv)\/[\w-]+\/?$/.test(u));
@@ -78,6 +79,9 @@ const fromRoot = p => (/^(https?:|data:|\/)/.test(p) ? p : SITE_ROOT + p);
     } else if (posts.length) {
       feedEl.hidden = true;
       igEl.hidden = false;
+      const eb = igSection.querySelector(".eyebrow"), h2 = igSection.querySelector("h2");
+      if (eb) eb.textContent = "Instagram reels";
+      if (h2) h2.textContent = "Our most-watched reels";
       igEl.innerHTML = posts.map(u => `<blockquote class="instagram-media" data-instgrm-permalink="${esc(u.replace(/\/?$/, "/"))}" data-instgrm-version="14"><a href="${esc(u)}" target="_blank" rel="noopener">View this reel on Instagram</a></blockquote>`).join("");
       // load Instagram's player only when the section is close, so the page stays light
       const load = () => { if (document.getElementById("ig-js")) return; const sc = document.createElement("script"); sc.id = "ig-js"; sc.async = true; sc.src = "https://www.instagram.com/embed.js"; document.body.appendChild(sc); };
@@ -85,6 +89,8 @@ const fromRoot = p => (/^(https?:|data:|\/)/.test(p) ? p : SITE_ROOT + p);
         const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { load(); io.disconnect(); } }, { rootMargin: "600px" });
         io.observe(igEl);
       } else load();
+    } else if (gEl) {
+      igSection.hidden = true; // this page already shows the gallery photos
     } else {
       photoGrid();
     }

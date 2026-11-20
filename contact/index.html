@@ -236,11 +236,26 @@
 </header>
 
 <main id="main">
-  <section class="page-hero">
-    <svg class="ph-scene" viewBox="0 0 1000 200" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-      <path class="m1" d="M0 120 L90 80 L170 105 L260 60 L350 95 L450 50 L560 92 L660 40 L760 88 L860 55 L1000 100 V200 H0Z"/>
-      <path class="m2" d="M0 150 L110 112 L200 140 L310 98 L420 135 L540 90 L640 128 L730 70 L830 120 L920 100 L1000 130 V200 H0Z"/>
-      <path class="m3" d="M0 185 L120 160 L240 180 L380 155 L520 182 L680 162 L800 186 L930 166 L1000 182 V200 H0Z"/>
+  <section class="page-hero theme-contact">
+    <svg class="ph-scene ph-tall" viewBox="0 0 1000 240" preserveAspectRatio="xMaxYMax slice" aria-hidden="true">
+      <path class="m1" d="M0 130 L100 92 L190 118 L290 70 L390 112 L500 80 L610 118 L700 72 L800 110 L900 84 L1000 112 V240 H0Z"/>
+      <path class="m2" d="M0 170 L120 140 L230 162 L350 128 L470 160 L590 130 L700 156 L810 126 L920 150 L1000 140 V240 H0Z"/>
+      <path class="road" d="M330 240 C 420 205, 520 200, 600 182 C 680 165, 760 162, 830 150 L 850 150 C 790 168, 710 176, 640 196 C 560 218, 500 228, 460 240Z"/>
+      <path class="road-line" d="M395 240 C 470 214, 560 200, 620 189 C 690 175, 770 164, 840 150"/>
+      <path class="m3" d="M0 220 L110 202 L220 214 L300 206 L330 240 H0Z M860 196 L940 186 L1000 194 V240 H900Z"/>
+      <g class="sign"><path d="M232 214 V160" class="post"/><path d="M196 162 H262 L274 172 L262 182 H196Z" class="board"/><text x="230" y="176" text-anchor="middle">TRAILNAMA</text></g>
+      <g class="ph-car" transform="translate(560 156) scale(.55)">
+        <g class="car-body">
+          <rect x="44" y="3" width="30" height="7" rx="2" fill="#fbbf24"/>
+          <path d="M28 26 L38 11 H82 L95 26 Z" fill="#c2410c"/>
+          <path d="M41 14 L34 25 H57 V14 Z M61 14 V25 H90 L82 14 Z" fill="#fde68a" opacity=".9"/>
+          <rect x="8" y="25" width="104" height="19" rx="6" fill="#ea580c"/>
+          <rect x="4" y="40" width="112" height="4" rx="2" fill="#7c2d12"/>
+          <rect x="108" y="29" width="5" height="5" rx="1.5" fill="#fff7d6"/>
+        </g>
+        <g class="wheel" transform="translate(32 47)"><circle r="10" fill="#1c1917"/><circle r="5" fill="#d6d3d1"/><path d="M-4 0 H4 M0 -4 V4" stroke="#57534e" stroke-width="1.6"/></g>
+        <g class="wheel" transform="translate(90 47)"><circle r="10" fill="#1c1917"/><circle r="5" fill="#d6d3d1"/><path d="M-4 0 H4 M0 -4 V4" stroke="#57534e" stroke-width="1.6"/></g>
+      </g>
     </svg>
 
     <div class="wrap ph-inner">
@@ -320,6 +335,25 @@
       <details><summary>Can you plan a trip for my group?</summary><p>Yes. Tell us your dates, group size and preferences and we will plan it with you.</p></details>
       <details><summary>Can I join on my own?</summary><p>Yes. Tell us when you would like to travel and we will let you know which group trips have seats.</p></details>
       <details><summary>What is the cancellation policy?</summary><p>Cancellation terms are shared with you in writing before you pay.</p></details>
+    </div>
+  </section>
+
+
+  <!-- INSTAGRAM: live feed, hand-picked reels, or a photo grid (set up in content.js) -->
+  <section class="section ig-section" id="instagram">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Instagram</p>
+          <h2>Fresh from the trail</h2>
+        </div>
+        <div class="head-side">
+          <p class="sub">Reels and stories from our trips. New ones go up on Instagram first.</p>
+          <a class="btn btn-ig" href="https://www.instagram.com/trailnama_adventures" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" class="fill"/></svg>Follow @trailnama_adventures</a>
+        </div>
+      </div>
+      <div class="ig-grid" id="ig-feed"></div>
+      <div class="ig-embeds" id="ig-embeds" hidden></div>
     </div>
   </section>
 </main>
