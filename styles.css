@@ -459,6 +459,7 @@ html.loading,html.loading body{overflow:hidden}
 
 @media(max-width:380px){
   .wrap,.narrow{width:calc(100% - 24px)}
+  .cards{margin:0 -12px;padding-left:12px;padding-right:12px}
   .hero h1{font-size:2.35rem}
   .form .row{grid-template-columns:1fr}
   .foot-grid{grid-template-columns:1fr}
@@ -902,3 +903,8 @@ body.floats .wa-float::after{animation:waRing 1.8s .4s var(--ease) 2}
 
 @keyframes menuItem{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
 
+/* sideways swipe rows keep the swipe to themselves (no page drift on phones) */
+.cards,.ig-embeds{overscroll-behavior-x:contain}
+/* phones: the swipe rows clip to their own box, so Chrome never counts the cards off to the right as page width */
+.ig-embeds{contain:paint}
+@media(max-width:860px){.cards{contain:paint}}
