@@ -1,0 +1,49 @@
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <p class="eyebrow">Get in touch</p>
+        <h2>Plan your trip</h2>
+        <p class="sub">Send us a message and we will get back to you.</p>
+        <ul class="contact-list">
+          <li><span>WhatsApp</span><a href="https://wa.me/918003742763" target="_blank" rel="noopener">+91 80037 42763</a></li>
+          <li><span>Email</span><a href="mailto:Trailnamaadventures@gmail.com">Trailnamaadventures@gmail.com</a></li>
+          <li><span>Instagram</span><a href="https://www.instagram.com/trailnama_adventures" target="_blank" rel="noopener">@trailnama_adventures</a></li>
+        </ul>
+        <div class="direct">
+          <img src="{{R}}assets/team/founder.jpg" alt="" width="56" height="56" loading="lazy">
+          <div>
+            <strong>Prefer to talk it through?</strong>
+            <span>Message Harsh directly and plan the trip together.</span>
+            <a class="link" href="https://wa.me/918003742763?text=Hi%20Harsh%2C%20I%27d%20like%20to%20plan%20a%20trip." target="_blank" rel="noopener">Chat with Harsh <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+        <figure class="contact-photo">
+          <img src="{{R}}assets/photos/milky-way.jpg" alt="A trekker under the Milky Way in the mountains" width="468" height="351" loading="lazy" decoding="async">
+          <figcaption>See you on the trail.</figcaption>
+        </figure>
+      </div>
+      <form id="enquiry" class="form" novalidate>
+        <div class="row">
+          <label>Name<input name="name" required autocomplete="name"></label>
+          <label>Phone<input name="phone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="+91"></label>
+        </div>
+        <label><span>Email <small>(optional)</small></span><input name="email" type="email" autocomplete="email"></label>
+        <label>Trip<select name="trip" id="trip-field">
+          <option value="">Choose a trip</option>
+          <option>Himalayan treks</option>
+          <option>Valley and river journeys</option>
+          <option>Weekend getaways</option>
+          <option>High altitude treks</option>
+          <option>Custom trip</option>
+        </select></label>
+        <div class="row">
+          <label>When<input name="dates" placeholder="e.g. mid-May"></label>
+          <label>People<input name="size" type="number" min="1" inputmode="numeric"></label>
+        </div>
+        <label><span>Message <small>(optional)</small></span><textarea name="message" rows="3"></textarea></label>
+        <button class="btn" type="submit">Send on WhatsApp</button>
+        <p class="note" id="form-note" role="status">This opens WhatsApp with your enquiry ready to send.</p>
+      </form>
+    </div>
+  </section>

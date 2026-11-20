@@ -1,23 +1,30 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-IN">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Trailnama Adventures | Guided treks and small-group trips in India</title>
-<meta name="description" content="Guided Himalayan treks, weekend getaways and small-group trips with clear pricing and WhatsApp support. Led by trekking creator Harsh (@harshbackpack).">
+<title>Trailnama Adventures | Himalayan Treks &amp; Group Trips in India</title>
+<meta name="description" content="Guided Himalayan treks, weekend getaways and small-group trips in India with clear pricing and WhatsApp support. Led by trekking creator Harsh (@harshbackpack).">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://trailnama.vercel.app/">
 <meta name="theme-color" content="#22120e">
 
 <meta property="og:type" content="website">
+<meta property="og:locale" content="en_IN">
 <meta property="og:site_name" content="Trailnama Adventures">
 <meta property="og:url" content="https://trailnama.vercel.app/">
 <meta property="og:title" content="Trailnama Adventures | Find your trail beyond the city">
-<meta property="og:description" content="Guided treks and small-group trips with clear pricing and WhatsApp support.">
+<meta property="og:description" content="Guided Himalayan treks, weekend getaways and small-group trips in India with clear pricing and WhatsApp support. Led by trekking creator Harsh (@harshbackpack).">
 <meta property="og:image" content="https://trailnama.vercel.app/assets/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Trailnama Adventures: Find your trail beyond the city">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Trailnama Adventures | Find your trail beyond the city">
+<meta name="twitter:description" content="Guided Himalayan treks, weekend getaways and small-group trips in India with clear pricing and WhatsApp support. Led by trekking creator Harsh (@harshbackpack).">
+<meta name="twitter:image" content="https://trailnama.vercel.app/assets/og.jpg">
 
+<link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
@@ -53,22 +60,114 @@
 
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "TravelAgency",
-  "name": "Trailnama Adventures",
-  "url": "https://trailnama.vercel.app/",
-  "logo": "https://trailnama.vercel.app/assets/icons/icon-512.png",
-  "image": "https://trailnama.vercel.app/assets/og.jpg",
-  "description": "Guided treks and small-group trips in India.",
-  "telephone": "+91-8003742763",
-  "email": "Trailnamaadventures@gmail.com",
-  "areaServed": "India",
-  "sameAs": ["https://www.instagram.com/trailnama_adventures"],
-  "founder": { "@type": "Person", "name": "Harsh", "sameAs": "https://www.instagram.com/harshbackpack" }
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "TravelAgency",
+   "@id": "https://trailnama.vercel.app/#agency",
+   "name": "Trailnama Adventures",
+   "url": "https://trailnama.vercel.app/",
+   "logo": "https://trailnama.vercel.app/assets/icons/icon-512.png",
+   "image": "https://trailnama.vercel.app/assets/og.jpg",
+   "description": "Guided Himalayan treks, weekend getaways and small-group trips in India.",
+   "telephone": "+91-8003742763",
+   "email": "Trailnamaadventures@gmail.com",
+   "areaServed": {
+    "@type": "Country",
+    "name": "India"
+   },
+   "sameAs": [
+    "https://www.instagram.com/trailnama_adventures"
+   ],
+   "founder": {
+    "@type": "Person",
+    "name": "Harsh",
+    "jobTitle": "Founder",
+    "sameAs": "https://www.instagram.com/harshbackpack"
+   },
+   "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+91-8003742763",
+    "contactType": "customer service",
+    "availableLanguage": [
+     "English",
+     "Hindi"
+    ]
+   }
+  },
+  {
+   "@type": "WebSite",
+   "@id": "https://trailnama.vercel.app/#website",
+   "url": "https://trailnama.vercel.app/",
+   "name": "Trailnama Adventures",
+   "inLanguage": "en-IN",
+   "publisher": {
+    "@id": "https://trailnama.vercel.app/#agency"
+   }
+  },
+  {
+   "@type": "ItemList",
+   "name": "Trailnama trips",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "item": {
+      "@type": "TouristTrip",
+      "name": "Himalayan treks",
+      "description": "Guided treks through mountain trails, high meadows and camps, planned around your pace.",
+      "image": "https://trailnama.vercel.app/assets/photos/valley-trail.jpg",
+      "provider": {
+       "@id": "https://trailnama.vercel.app/#agency"
+      }
+     }
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "item": {
+      "@type": "TouristTrip",
+      "name": "Valley and river journeys",
+      "description": "Relaxed trips through hill towns, rivers and valleys, with comfortable stays.",
+      "image": "https://trailnama.vercel.app/assets/photos/river-bridge.jpg",
+      "provider": {
+       "@id": "https://trailnama.vercel.app/#agency"
+      }
+     }
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "item": {
+      "@type": "TouristTrip",
+      "name": "Weekend getaways",
+      "description": "A short reset from the city: fresh air, waterfalls and easy trails over a weekend.",
+      "image": "https://trailnama.vercel.app/assets/photos/waterfall.jpg",
+      "provider": {
+       "@id": "https://trailnama.vercel.app/#agency"
+      }
+     }
+    },
+    {
+     "@type": "ListItem",
+     "position": 4,
+     "item": {
+      "@type": "TouristTrip",
+      "name": "High altitude treks",
+      "description": "For experienced trekkers ready for snow and big views, with acclimatisation built in.",
+      "image": "https://trailnama.vercel.app/assets/photos/annapurna-south.jpg",
+      "provider": {
+       "@id": "https://trailnama.vercel.app/#agency"
+      }
+     }
+    }
+   ]
+  }
+ ]
 }
 </script>
 </head>
-<body>
+<body data-page="home">
 
 <div class="loader" aria-hidden="true">
   <div class="loader-in">
@@ -107,15 +206,14 @@
 
 <header class="nav" id="top">
   <div class="nav-inner">
-    <a href="#top" class="brand" aria-label="Trailnama Adventures, back to top"><img src="assets/logo-crop.jpeg" alt="Trailnama Adventures" width="56" height="48"></a>
+    <a href="" class="brand" aria-label="Trailnama Adventures home"><img src="assets/logo-crop.jpeg" alt="Trailnama Adventures" width="56" height="48"></a>
     <button class="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="links"><span></span><span></span><span></span></button>
     <nav class="links" id="links" aria-label="Main">
-      <a href="#trips">Trips</a>
-      <a href="#covers">What's included</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#about">About</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contact" class="btn btn-sm">Enquire</a>
+      <a href="" class="active" aria-current="page">Home</a>
+      <a href="trips/">Upcoming trips</a>
+      <a href="about/">About us</a>
+      <a href="contact/">Contact</a>
+      <a href="contact/#enquiry" class="btn btn-sm">Enquire</a>
     </nav>
   </div>
 </header>
@@ -140,12 +238,15 @@
 
     <div class="wrap hero-inner">
       <div class="hero-copy">
-        <p class="kicker">Guided treks · Small-group trips</p>
-        <h1>Find your <em>trail<svg class="underline" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 C 40 2, 90 12, 130 5 S 190 4, 198 7" pathLength="1"/></svg></em><br>beyond the city.</h1>
-        <p class="lead">Small-group treks and trips with clear pricing, safe logistics and enough time to actually enjoy the view.</p>
-        <div class="cta">
-          <a href="#trips" class="btn">See trips</a>
-          <a href="#contact" class="btn btn-glass">Plan a custom trip</a>
+        <div class="hero-head">
+          <p class="kicker">Guided treks · Small-group trips</p>
+          <h1>Find your <em>trail<svg class="underline" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 C 40 2, 90 12, 130 5 S 190 4, 198 7" pathLength="1"/></svg></em><br>beyond the city.</h1>
+          <p class="lead">Small-group treks and trips with clear pricing, safe logistics and enough time to actually enjoy the view.</p>
+          <div class="cta">
+            <a href="trips/" class="btn">See upcoming trips</a>
+            <a href="contact/#enquiry" class="btn btn-glass">Plan a custom trip</a>
+          </div>
+          <a class="scroll-cue" href="#planner" aria-label="Scroll to check availability"><span></span></a>
         </div>
 
         <form class="planner glass" id="planner">
@@ -177,6 +278,7 @@
     </div>
   </section>
 
+
   <!-- TRIPS -->
   <section class="section alt" id="trips">
     <div class="wrap">
@@ -185,43 +287,43 @@
           <p class="eyebrow">Trips</p>
           <h2>Choose your kind of adventure</h2>
         </div>
-        <p class="sub">Tell us your dates and group size, and we will plan the trip and share the price.</p>
+        <div class="head-side"><p class="sub">Tell us your dates and group size, and we will plan the trip and share the price.</p><a class="link" href="trips/">All upcoming trips <span aria-hidden="true">→</span></a></div>
       </div>
       <div class="cards">
-        <article class="card">
+        <article class="card" data-trip-name="Himalayan treks" data-trip-desc="Guided treks through mountain trails, high meadows and camps, planned around your pace." data-trip-img="assets/photos/valley-trail.jpg">
           <div class="card-media"><img src="assets/photos/valley-trail.jpg" alt="Two trekkers on a trail through a wide mountain valley" width="521" height="391" loading="lazy" decoding="async"><span class="pill">Trek</span></div>
           <div class="body">
             <h3>Himalayan treks</h3>
             <p>Guided treks through mountain trails, high meadows and camps, planned around your pace.</p>
             <p class="meta">Guided · Small group · Custom dates</p>
-            <a href="#contact" class="link" data-trip="Himalayan treks">Get a quote <span aria-hidden="true">→</span></a>
+            <a href="trips/#himalayan-treks" class="link">View trip <span aria-hidden="true">→</span></a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-trip-name="Valley and river journeys" data-trip-desc="Relaxed trips through hill towns, rivers and valleys, with comfortable stays." data-trip-img="assets/photos/river-bridge.jpg">
           <div class="card-media"><img src="assets/photos/river-bridge.jpg" alt="A bridge over a green river in a hill town" width="467" height="305" loading="lazy" decoding="async"><span class="pill">Group trip</span></div>
           <div class="body">
             <h3>Valley and river journeys</h3>
             <p>Relaxed trips through hill towns, rivers and valleys, with comfortable stays.</p>
             <p class="meta">Easy pace · Stays included</p>
-            <a href="#contact" class="link" data-trip="Valley and river journeys">Get a quote <span aria-hidden="true">→</span></a>
+            <a href="trips/#valley-river-journeys" class="link">View trip <span aria-hidden="true">→</span></a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-trip-name="Weekend getaways" data-trip-desc="A short reset from the city: fresh air, waterfalls and easy trails over a weekend." data-trip-img="assets/photos/waterfall.jpg">
           <div class="card-media"><img src="assets/photos/waterfall.jpg" alt="A trekker standing at the foot of a mountain waterfall" width="466" height="350" loading="lazy" decoding="async"><span class="pill">Weekend</span></div>
           <div class="body">
             <h3>Weekend getaways</h3>
             <p>A short reset from the city: fresh air, waterfalls and easy trails over a weekend.</p>
             <p class="meta">2 days · Beginner friendly</p>
-            <a href="#contact" class="link" data-trip="Weekend getaways">Get a quote <span aria-hidden="true">→</span></a>
+            <a href="trips/#weekend-getaways" class="link">View trip <span aria-hidden="true">→</span></a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-trip-name="High altitude treks" data-trip-desc="For experienced trekkers ready for snow and big views, with acclimatisation built in." data-trip-img="assets/photos/annapurna-south.jpg">
           <div class="card-media"><img src="assets/photos/annapurna-south.jpg" alt="Snow and glacier on the face of Annapurna South" width="466" height="350" loading="lazy" decoding="async"><span class="pill">High altitude</span></div>
           <div class="body">
             <h3>High altitude treks</h3>
             <p>For experienced trekkers ready for snow and big views, with acclimatisation built in.</p>
             <p class="meta">Challenging · Custom dates</p>
-            <a href="#contact" class="link" data-trip="High altitude treks">Get a quote <span aria-hidden="true">→</span></a>
+            <a href="trips/#high-altitude-treks" class="link">View trip <span aria-hidden="true">→</span></a>
           </div>
         </article>
       </div>
@@ -234,6 +336,7 @@
       </ol>
     </div>
   </section>
+
 
   <!-- WHAT EVERY TRIP COVERS -->
   <section class="section" id="covers">
@@ -252,22 +355,26 @@
           <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><strong>Small groups</strong><span>Easier to move, easier to talk, easier to enjoy.</span></div></li>
           <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><strong>WhatsApp support</strong><span>Ask questions before the trip and reach us during it.</span></div></li>
         </ul>
-        <a href="#contact" class="btn">Ask about a trip</a>
+        <a href="contact/#enquiry" class="btn">Ask about a trip</a>
       </div>
     </div>
   </section>
 
-  <!-- GALLERY -->
-  <section class="section alt" id="gallery">
+
+  <!-- INSTAGRAM: live feed, hand-picked reels, or a photo grid (set up in content.js) -->
+  <section class="section ig-section" id="instagram">
     <div class="wrap">
       <div class="section-head">
         <div>
-          <p class="eyebrow">Gallery</p>
-          <h2>Moments from the trail</h2>
+          <p class="eyebrow">Instagram</p>
+          <h2>Fresh from the trail</h2>
         </div>
-        <a class="link" href="https://www.instagram.com/trailnama_adventures" target="_blank" rel="noopener">More on Instagram <span aria-hidden="true">→</span></a>
+        <div class="head-side">
+          <p class="sub">Reels and stories from our trips. New ones go up on Instagram first.</p>
+          <a class="btn btn-ig" href="https://www.instagram.com/trailnama_adventures" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" class="fill"/></svg>Follow @trailnama_adventures</a>
+        </div>
       </div>
-      <div class="gallery" id="gallery-grid"></div>
+      <div class="ig-grid" id="ig-feed"></div>
       <div class="ig-embeds" id="ig-embeds" hidden></div>
     </div>
   </section>
@@ -289,10 +396,11 @@
           <li><b>400+</b><span>posts of trail stories</span></li>
           <li><b>India</b><span>mountains to coast</span></li>
         </ul>
-        <a class="link" href="https://www.instagram.com/harshbackpack" target="_blank" rel="noopener">Follow @harshbackpack <span aria-hidden="true">→</span></a>
+        <div class="link-row"><a class="btn" href="about/">More about us</a><a class="link" href="https://www.instagram.com/harshbackpack" target="_blank" rel="noopener">Follow @harshbackpack <span aria-hidden="true">→</span></a></div>
       </div>
     </div>
   </section>
+
 
   <!-- REVIEWS (shows itself once real reviews are added in content.js) -->
   <section class="section alt" id="stories" hidden>
@@ -303,19 +411,6 @@
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section class="section alt" id="faq">
-    <div class="wrap narrow">
-      <p class="eyebrow">FAQ</p>
-      <h2>Questions, answered</h2>
-      <details><summary>How do I book a trip?</summary><p>Send an enquiry through the form below or on WhatsApp. We confirm availability and share the booking steps.</p></details>
-      <details><summary>Do I need trekking experience?</summary><p>Each trip lists a difficulty level. We have options for beginners as well as experienced trekkers.</p></details>
-      <details><summary>What is included in the price?</summary><p>Inclusions and exclusions are listed for every trip and confirmed before you pay.</p></details>
-      <details><summary>Can you plan a trip for my group?</summary><p>Yes. Tell us your dates, group size and preferences and we will plan it with you.</p></details>
-      <details><summary>Can I join on my own?</summary><p>Yes. Tell us when you would like to travel and we will let you know which group trips have seats.</p></details>
-      <details><summary>What is the cancellation policy?</summary><p>Cancellation terms are shared with you in writing before you pay.</p></details>
-    </div>
-  </section>
 
   <!-- CTA BAND -->
   <section class="band">
@@ -327,59 +422,13 @@
       <a class="btn btn-light" href="https://wa.me/918003742763?text=Hi%20Trailnama%20Adventures%2C%20I%27m%20not%20sure%20where%20to%20go.%20Can%20you%20suggest%20a%20plan%3F" target="_blank" rel="noopener">Message us on WhatsApp</a>
     </div>
   </section>
-
-  <!-- CONTACT -->
-  <section class="section" id="contact">
-    <div class="wrap contact-grid">
-      <div>
-        <p class="eyebrow">Contact</p>
-        <h2>Plan your trip</h2>
-        <p class="sub">Send us a message and we will get back to you.</p>
-        <ul class="contact-list">
-          <li><span>WhatsApp</span><a href="https://wa.me/918003742763" target="_blank" rel="noopener">+91 80037 42763</a></li>
-          <li><span>Email</span><a href="mailto:Trailnamaadventures@gmail.com">Trailnamaadventures@gmail.com</a></li>
-          <li><span>Instagram</span><a href="https://www.instagram.com/trailnama_adventures" target="_blank" rel="noopener">@trailnama_adventures</a></li>
-        </ul>
-        <div class="direct">
-          <img src="assets/team/founder.jpg" alt="" width="56" height="56" loading="lazy">
-          <div>
-            <strong>Prefer to talk it through?</strong>
-            <span>Message Harsh directly and plan the trip together.</span>
-            <a class="link" href="https://wa.me/918003742763?text=Hi%20Harsh%2C%20I%27d%20like%20to%20plan%20a%20trip." target="_blank" rel="noopener">Chat with Harsh <span aria-hidden="true">→</span></a>
-          </div>
-        </div>
-      </div>
-      <form id="enquiry" class="form" novalidate>
-        <div class="row">
-          <label>Name<input name="name" required autocomplete="name"></label>
-          <label>Phone<input name="phone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="+91"></label>
-        </div>
-        <label><span>Email <small>(optional)</small></span><input name="email" type="email" autocomplete="email"></label>
-        <label>Trip<select name="trip" id="trip-field">
-          <option value="">Choose a trip</option>
-          <option>Himalayan treks</option>
-          <option>Valley and river journeys</option>
-          <option>Weekend getaways</option>
-          <option>High altitude treks</option>
-          <option>Custom trip</option>
-        </select></label>
-        <div class="row">
-          <label>When<input name="dates" placeholder="e.g. mid-May"></label>
-          <label>People<input name="size" type="number" min="1" inputmode="numeric"></label>
-        </div>
-        <label><span>Message <small>(optional)</small></span><textarea name="message" rows="3"></textarea></label>
-        <button class="btn" type="submit">Send on WhatsApp</button>
-        <p class="note" id="form-note" role="status">This opens WhatsApp with your enquiry ready to send.</p>
-      </form>
-    </div>
-  </section>
 </main>
 
 <footer class="footer">
   <div class="wrap foot-grid">
     <div class="foot-brand">
       <img src="assets/logo-crop.jpeg" alt="Trailnama Adventures" width="70" height="61" loading="lazy">
-      <p>Guided treks and small-group trips, planned with care.</p>
+      <p>Guided treks and small-group trips in India, planned with care.</p>
       <div class="socials">
         <a href="https://www.instagram.com/trailnama_adventures" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" class="fill"/></svg></a>
         <a href="https://wa.me/918003742763" target="_blank" rel="noopener" aria-label="WhatsApp"><svg class="wa-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6a9.3 9.3 0 0 0-8 14l-1.3 4.8 4.9-1.3A9.3 9.3 0 1 0 12 2.6z" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/><path fill="#fff" stroke="none" d="M8.6 7.3c.2-.4.4-.4.7-.4h.5c.2 0 .4 0 .6.4l.8 1.8c.1.2.1.4 0 .6l-.5.7c-.1.2-.1.3 0 .5.4.8 1 1.5 1.7 2 .5.4 1 .7 1.6.9.2.1.3 0 .5-.1l.7-.8c.2-.2.4-.2.6-.1l1.7.8c.2.1.4.2.4.4.1.3 0 1-.3 1.4-.4.5-1.2 1-2 1-.7 0-1.5-.2-2.9-.8-2.2-1-3.7-3.2-3.9-3.5-.2-.3-1.2-1.6-1.2-3 0-1.4.7-2.1 1-2.4z"/></svg></a>
@@ -387,13 +436,21 @@
       </div>
     </div>
     <div>
-      <h3>Explore</h3>
+      <h3>Pages</h3>
       <ul>
-        <li><a href="#trips">Trips</a></li>
-        <li><a href="#covers">What's included</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#faq">FAQ</a></li>
+        <li><a href="">Home</a></li>
+        <li><a href="trips/">Upcoming trips</a></li>
+        <li><a href="about/">About us</a></li>
+        <li><a href="contact/">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Trips</h3>
+      <ul>
+        <li><a href="trips/#himalayan-treks">Himalayan treks</a></li>
+        <li><a href="trips/#valley-river-journeys">Valley and river journeys</a></li>
+        <li><a href="trips/#weekend-getaways">Weekend getaways</a></li>
+        <li><a href="trips/#high-altitude-treks">High altitude treks</a></li>
       </ul>
     </div>
     <div>
@@ -403,15 +460,11 @@
         <li><a href="mailto:Trailnamaadventures@gmail.com">Trailnamaadventures@gmail.com</a></li>
         <li><a href="https://www.instagram.com/trailnama_adventures" target="_blank" rel="noopener">@trailnama_adventures</a></li>
       </ul>
-    </div>
-    <div>
-      <h3>Plan a trip</h3>
-      <p>Tell us your dates and we will plan the rest.</p>
-      <a class="btn btn-sm" href="#contact">Enquire</a>
+      <a class="btn btn-sm" href="contact/#enquiry">Enquire</a>
     </div>
   </div>
   <div class="wrap foot-bottom">
-    <p>&copy; <span id="yr">2026</span> Trailnama Adventures</p>
+    <p>&copy; 2026 Trailnama Adventures</p>
     <a href="#top">Back to top ↑</a>
   </div>
 </footer>
