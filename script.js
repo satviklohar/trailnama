@@ -28,6 +28,37 @@ if (walkPath && walker && walkPath.getAnimations) {
   })();
 }
 
+/* ---------- contact banner: the jeep drives the road to the destination pin ---------- */
+const drive = $(".ph-drive");
+if (drive) {
+  const road = drive.querySelector("#drive-path");
+  const car = drive.querySelector(".ph-car");
+  const banner = drive.closest(".page-hero");
+  const L = road.getTotalLength();
+  const DRIVE = 7200, REST = 1600;
+  const ease = x => 1 - Math.pow(1 - x, 1.7);        // eases off as it nears the horizon
+  const place = e => {
+    const a = road.getPointAtLength(e * L), b = road.getPointAtLength(Math.min(e * L + 2, L));
+    const tilt = Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI * 0.45;
+    const size = 0.8 - 0.66 * Math.pow(e, 0.8);      // smaller with distance
+    car.setAttribute("transform", `translate(${a.x.toFixed(1)} ${a.y.toFixed(1)}) scale(${size.toFixed(3)}) rotate(${tilt.toFixed(1)})`);
+    car.style.opacity = e < 0.05 ? e / 0.05 : e > 0.86 ? Math.max(0, (1 - e) / 0.14) : 1;
+  };
+  if (reduce) place(0.3);
+  else {
+    let start = null;
+    (function loop(ts) {
+      if (banner.classList.contains("is-offscreen") || document.documentElement.classList.contains("loading")) start = null;
+      else {
+        if (start === null) start = ts;
+        const t = (ts - start) % (DRIVE + REST);
+        if (t < DRIVE) place(ease(t / DRIVE)); else car.style.opacity = 0;
+      }
+      requestAnimationFrame(loop);
+    })(performance.now());
+  }
+}
+
 /* ---------- mobile menu ---------- */
 const menuBtn = $(".menu-btn");
 const links = $("#links");
@@ -105,20 +136,6 @@ chips.forEach(chip => chip.addEventListener("click", () => {
   document.querySelectorAll(".trip[data-kind]").forEach(t => { t.hidden = f !== "all" && t.dataset.kind !== f; });
 }));
 
-/* ---------- reveal on scroll, staggered within each group ---------- */
-if (!reduce && "IntersectionObserver" in window) {
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
-  }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
-  document.querySelectorAll(".section .wrap > *:not(.cards):not(.gallery):not(.steps):not(.values):not(.ig-grid):not(.trip), .card, .g-item, .steps li, .checks li, .contact-list li, .trip, .value, .ig-tile")
-    .forEach(el => {
-      const i = [...el.parentElement.children].indexOf(el);
-      el.style.setProperty("--d", Math.min(i, 6) * 0.08 + "s");
-      el.classList.add("fade");
-      io.observe(el);
-    });
-}
-
 /* ---------- scroll effects: nav, progress bar, altitude, floating buttons, hero parallax ---------- */
 const nav = $(".nav");
 const bar = $(".progress i");
@@ -141,7 +158,7 @@ function onScroll() {
   const p = max > 0 ? Math.min(y / max, 1) : 0;
   nav.classList.toggle("scrolled", y > 20);
   document.body.classList.toggle("floats", y > 240);
-  if (bar) bar.style.width = p * 100 + "%";
+  if (bar) bar.style.transform = `scaleX(${p})`;
   if (altEl) {
     altEl.textContent = Math.round(p * SUMMIT).toLocaleString("en-IN");
     altLabel.textContent = stages.filter(s => p >= s[0]).pop()[1];
@@ -161,6 +178,12 @@ if ("IntersectionObserver" in window) {
     document.body.classList.toggle("near-form", near.size > 0);
   }, { threshold: 0.15 });
   document.querySelectorAll("#enquiry, #planner").forEach(f => formWatch.observe(f));
+}
+
+/* ---------- pause banner animations while they are off screen (smoother scrolling, less battery) ---------- */
+if ("IntersectionObserver" in window) {
+  const rest = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle("is-offscreen", !e.isIntersecting)));
+  document.querySelectorAll(".hero, .page-hero").forEach(el => rest.observe(el));
 }
 
 /* ---------- founder card ---------- */

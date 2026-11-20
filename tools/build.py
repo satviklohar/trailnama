@@ -190,6 +190,7 @@ def render(page):
 
 <script src="{{{{R}}}}content.js"></script>
 <script src="{{{{R}}}}script.js"></script>
+<script src="{{{{R}}}}motion.js"></script>
 </body>
 </html>
 """

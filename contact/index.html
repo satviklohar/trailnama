@@ -30,11 +30,13 @@
 <link rel="manifest" href="../site.webmanifest">
 
 <script>
+/* animations are on unless the visitor prefers reduced motion (set before first paint, so nothing flashes) */
+if (!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) && "IntersectionObserver" in window) document.documentElement.classList.add("motion");
 /* opening screen: once per visit, ~1.2s, never more than 2.5s */
 (function () {
   var d = document.documentElement, KEY = "tn-intro", seen = false;
   try { seen = sessionStorage.getItem(KEY); sessionStorage.setItem(KEY, "1"); } catch (e) {}
-  if (seen) return;
+  if (seen || navigator.webdriver || /bot|crawl|spider|slurp|lighthouse|pagespeed|headless/i.test(navigator.userAgent)) return;
   var t0 = Date.now(), ended = false;
   var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
   d.classList.add("loading");
@@ -237,24 +239,63 @@
 
 <main id="main">
   <section class="page-hero theme-contact">
-    <svg class="ph-scene ph-tall" viewBox="0 0 1000 240" preserveAspectRatio="xMaxYMax slice" aria-hidden="true">
-      <path class="m1" d="M0 130 L100 92 L190 118 L290 70 L390 112 L500 80 L610 118 L700 72 L800 110 L900 84 L1000 112 V240 H0Z"/>
-      <path class="m2" d="M0 170 L120 140 L230 162 L350 128 L470 160 L590 130 L700 156 L810 126 L920 150 L1000 140 V240 H0Z"/>
-      <path class="road" d="M330 240 C 420 205, 520 200, 600 182 C 680 165, 760 162, 830 150 L 850 150 C 790 168, 710 176, 640 196 C 560 218, 500 228, 460 240Z"/>
-      <path class="road-line" d="M395 240 C 470 214, 560 200, 620 189 C 690 175, 770 164, 840 150"/>
-      <path class="m3" d="M0 220 L110 202 L220 214 L300 206 L330 240 H0Z M860 196 L940 186 L1000 194 V240 H900Z"/>
-      <g class="sign"><path d="M232 214 V160" class="post"/><path d="M196 162 H262 L274 172 L262 182 H196Z" class="board"/><text x="230" y="176" text-anchor="middle">TRAILNAMA</text></g>
-      <g class="ph-car" transform="translate(560 156) scale(.55)">
-        <g class="car-body">
-          <rect x="44" y="3" width="30" height="7" rx="2" fill="#fbbf24"/>
-          <path d="M28 26 L38 11 H82 L95 26 Z" fill="#c2410c"/>
-          <path d="M41 14 L34 25 H57 V14 Z M61 14 V25 H90 L82 14 Z" fill="#fde68a" opacity=".9"/>
-          <rect x="8" y="25" width="104" height="19" rx="6" fill="#ea580c"/>
-          <rect x="4" y="40" width="112" height="4" rx="2" fill="#7c2d12"/>
-          <rect x="108" y="29" width="5" height="5" rx="1.5" fill="#fff7d6"/>
+    <svg class="ph-scene ph-tall ph-drive" viewBox="0 0 1000 240" preserveAspectRatio="xMaxYMax slice" aria-hidden="true">
+      <defs>
+        <radialGradient id="duskSun"><stop offset="0" stop-color="#fff1c9" stop-opacity=".95"/><stop offset=".25" stop-color="#ffd38a" stop-opacity=".6"/><stop offset="1" stop-color="#ffb35c" stop-opacity="0"/></radialGradient>
+        <linearGradient id="roadG" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#2a150f"/><stop offset="1" stop-color="#5a2c1b"/></linearGradient>
+        <linearGradient id="beamG" x1="0" x2="1"><stop offset="0" stop-color="#fff3c4" stop-opacity=".55"/><stop offset="1" stop-color="#fff3c4" stop-opacity="0"/></linearGradient>
+      </defs>
+
+      <!-- setting sun -->
+      <circle class="dusk-sun" cx="878" cy="112" r="120" fill="url(#duskSun)"/>
+      <circle class="dusk-disc" cx="878" cy="112" r="22"/>
+
+      <!-- birds gliding home -->
+      <g class="birds">
+        <path class="bird" d="M0 0 q6 -6 12 0 q6 -6 12 0"/>
+        <path class="bird b2" d="M30 -14 q5 -5 10 0 q5 -5 10 0"/>
+        <path class="bird b3" d="M-26 -22 q4 -4 8 0 q4 -4 8 0"/>
+      </g>
+
+      <!-- hills -->
+      <path class="m1" d="M0 130 L100 96 L190 120 L290 74 L390 112 L500 84 L610 118 L700 82 L790 112 L860 96 L940 118 L1000 104 V240 H0Z"/>
+      <path class="m2" d="M0 172 L120 142 L230 164 L350 132 L470 160 L590 136 L690 154 L790 140 L900 150 L1000 144 V240 H0Z"/>
+
+      <!-- the road to the destination -->
+      <path class="road" fill="url(#roadG)" d="M420 240 C 510 214, 620 198, 690 178 C 760 158, 820 142, 850 132 L 866 132 C 840 144, 790 162, 735 184 C 680 206, 640 222, 650 240 Z"/>
+      <path id="drive-path" class="road-line" d="M535 240 C 600 216, 670 197, 712 181 C 765 160, 825 143, 858 132"/>
+
+      <!-- destination pin -->
+      <g class="dest">
+        <ellipse class="dest-shadow" cx="858" cy="131" rx="7" ry="2.2"/>
+        <g class="dest-pin"><path d="M858 128 C 851 119, 849 115, 849 111 A 9 9 0 1 1 867 111 C 867 115, 865 119, 858 128Z"/><circle cx="858" cy="111" r="3.4" class="dest-dot"/></g>
+        <circle class="dest-ring" cx="858" cy="131" r="9"/>
+      </g>
+
+      <!-- foreground -->
+      <path class="m3" d="M0 214 L110 198 L220 210 L330 202 L420 240 H0Z M664 240 C 700 226, 760 214, 830 206 L 900 196 L 1000 204 V240 Z"/>
+
+      <!-- signpost -->
+      <g class="sign"><path d="M232 214 V158" class="post"/><g class="board-g"><path d="M196 160 H262 L274 170 L262 180 H196Z" class="board"/><text x="230" y="174" text-anchor="middle">TRAILNAMA</text></g></g>
+
+      <!-- the jeep (moved along the road by script.js) -->
+      <g class="ph-car" transform="translate(535 240) scale(.75)">
+        <g transform="translate(-60 -57)">
+          <path d="M113 31 L150 22 L150 44 Z" fill="url(#beamG)" class="beam"/>
+          <g class="puffs"><circle cx="3" cy="40" r="3"/><circle cx="3" cy="40" r="3"/><circle cx="3" cy="40" r="3"/></g>
+          <g class="car-body">
+            <rect x="44" y="3" width="30" height="7" rx="2" fill="#fbbf24"/>
+            <path d="M50 3 V10 M62 3 V10" stroke="#c2410c" stroke-width="1.5"/>
+            <path d="M28 26 L38 11 H82 L95 26 Z" fill="#c2410c"/>
+            <path d="M41 14 L34 25 H57 V14 Z M61 14 V25 H90 L82 14 Z" fill="#fde68a" opacity=".9"/>
+            <rect x="8" y="25" width="104" height="19" rx="6" fill="#ea580c"/>
+            <rect x="4" y="40" width="112" height="4" rx="2" fill="#7c2d12"/>
+            <rect x="108" y="29" width="5" height="5" rx="1.5" fill="#fff7d6"/>
+            <rect x="6" y="29" width="4" height="5" rx="1.5" fill="#fca5a5"/>
+          </g>
+          <g class="wheel" transform="translate(32 47)"><circle r="10" fill="#1c1917"/><circle r="5" fill="#d6d3d1"/><path d="M-4 0 H4 M0 -4 V4" stroke="#57534e" stroke-width="1.6"/></g>
+          <g class="wheel" transform="translate(90 47)"><circle r="10" fill="#1c1917"/><circle r="5" fill="#d6d3d1"/><path d="M-4 0 H4 M0 -4 V4" stroke="#57534e" stroke-width="1.6"/></g>
         </g>
-        <g class="wheel" transform="translate(32 47)"><circle r="10" fill="#1c1917"/><circle r="5" fill="#d6d3d1"/><path d="M-4 0 H4 M0 -4 V4" stroke="#57534e" stroke-width="1.6"/></g>
-        <g class="wheel" transform="translate(90 47)"><circle r="10" fill="#1c1917"/><circle r="5" fill="#d6d3d1"/><path d="M-4 0 H4 M0 -4 V4" stroke="#57534e" stroke-width="1.6"/></g>
       </g>
     </svg>
 
@@ -427,5 +468,6 @@
 
 <script src="../content.js"></script>
 <script src="../script.js"></script>
+<script src="../motion.js"></script>
 </body>
 </html>

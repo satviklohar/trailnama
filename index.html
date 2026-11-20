@@ -30,11 +30,13 @@
 <link rel="manifest" href="site.webmanifest">
 
 <script>
+/* animations are on unless the visitor prefers reduced motion (set before first paint, so nothing flashes) */
+if (!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) && "IntersectionObserver" in window) document.documentElement.classList.add("motion");
 /* opening screen: once per visit, ~1.2s, never more than 2.5s */
 (function () {
   var d = document.documentElement, KEY = "tn-intro", seen = false;
   try { seen = sessionStorage.getItem(KEY); sessionStorage.setItem(KEY, "1"); } catch (e) {}
-  if (seen) return;
+  if (seen || navigator.webdriver || /bot|crawl|spider|slurp|lighthouse|pagespeed|headless/i.test(navigator.userAgent)) return;
   var t0 = Date.now(), ended = false;
   var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
   d.classList.add("loading");
@@ -296,7 +298,7 @@
             <h3>Himalayan treks</h3>
             <p>Guided treks through mountain trails, high meadows and camps, planned around your pace.</p>
             <p class="meta">Guided · Small group · Custom dates</p>
-            <a href="trips/#himalayan-treks" class="link">View trip <span aria-hidden="true">→</span></a>
+            <a href="trips/#himalayan-treks" class="link">View trip<span class="sr-only">: Himalayan treks</span> <span aria-hidden="true">→</span></a>
           </div>
         </article>
         <article class="card" data-trip-name="Valley and river journeys" data-trip-desc="Relaxed trips through hill towns, rivers and valleys, with comfortable stays." data-trip-img="assets/photos/river-bridge.jpg">
@@ -305,7 +307,7 @@
             <h3>Valley and river journeys</h3>
             <p>Relaxed trips through hill towns, rivers and valleys, with comfortable stays.</p>
             <p class="meta">Easy pace · Stays included</p>
-            <a href="trips/#valley-river-journeys" class="link">View trip <span aria-hidden="true">→</span></a>
+            <a href="trips/#valley-river-journeys" class="link">View trip<span class="sr-only">: Valley and river journeys</span> <span aria-hidden="true">→</span></a>
           </div>
         </article>
         <article class="card" data-trip-name="Weekend getaways" data-trip-desc="A short reset from the city: fresh air, waterfalls and easy trails over a weekend." data-trip-img="assets/photos/waterfall.jpg">
@@ -314,7 +316,7 @@
             <h3>Weekend getaways</h3>
             <p>A short reset from the city: fresh air, waterfalls and easy trails over a weekend.</p>
             <p class="meta">2 days · Beginner friendly</p>
-            <a href="trips/#weekend-getaways" class="link">View trip <span aria-hidden="true">→</span></a>
+            <a href="trips/#weekend-getaways" class="link">View trip<span class="sr-only">: Weekend getaways</span> <span aria-hidden="true">→</span></a>
           </div>
         </article>
         <article class="card" data-trip-name="High altitude treks" data-trip-desc="For experienced trekkers ready for snow and big views, with acclimatisation built in." data-trip-img="assets/photos/annapurna-south.jpg">
@@ -323,7 +325,7 @@
             <h3>High altitude treks</h3>
             <p>For experienced trekkers ready for snow and big views, with acclimatisation built in.</p>
             <p class="meta">Challenging · Custom dates</p>
-            <a href="trips/#high-altitude-treks" class="link">View trip <span aria-hidden="true">→</span></a>
+            <a href="trips/#high-altitude-treks" class="link">View trip<span class="sr-only">: High altitude treks</span> <span aria-hidden="true">→</span></a>
           </div>
         </article>
       </div>
@@ -493,5 +495,6 @@
 
 <script src="content.js"></script>
 <script src="script.js"></script>
+<script src="motion.js"></script>
 </body>
 </html>

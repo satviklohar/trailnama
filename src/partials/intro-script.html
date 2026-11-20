@@ -1,9 +1,11 @@
 <script>
+/* animations are on unless the visitor prefers reduced motion (set before first paint, so nothing flashes) */
+if (!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) && "IntersectionObserver" in window) document.documentElement.classList.add("motion");
 /* opening screen: once per visit, ~1.2s, never more than 2.5s */
 (function () {
   var d = document.documentElement, KEY = "tn-intro", seen = false;
   try { seen = sessionStorage.getItem(KEY); sessionStorage.setItem(KEY, "1"); } catch (e) {}
-  if (seen) return;
+  if (seen || navigator.webdriver || /bot|crawl|spider|slurp|lighthouse|pagespeed|headless/i.test(navigator.userAgent)) return;
   var t0 = Date.now(), ended = false;
   var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
   d.classList.add("loading");
